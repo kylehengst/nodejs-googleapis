@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "envs": "^0.1.6",
+    "express": "^4.13.4",
+    "googleapis": "^4.0.0"
+  }
+}
