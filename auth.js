@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+var config = require('./config');
 var readline = require('readline');
 
 var google = require('../lib/googleapis.js');
@@ -23,7 +24,7 @@ var plus = google.plus('v1');
 // Client ID and client secret are available at
 // https://code.google.com/apis/console
 var CLIENT_ID = '247176875445-j1qmvqljf6k0uo3ou6lkpfo5gd9mb2eu.apps.googleusercontent.com';
-var CLIENT_SECRET = 'q-nLnfZ09L6zHMthMaFc7IIX';
+var CLIENT_SECRET = config.CLIENT_SECRET;
 var REDIRECT_URL = 'http://google.com';
 
 var oauth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);

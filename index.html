@@ -1,11 +1,42 @@
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>
+
+        function auth() {
+            gapi.auth.authorize(config, function() {
+                gapi.client.load('bigquery', 'v2');
+                $('#client_initiated').html('BigQuery client authorized');
+                $('#auth_button').fadeOut();
+                $('#dataset_button').fadeIn();
+            });
+        }
+
+        // User Submitted Variables
+        var projectNumber = 'theta-window-126601';
+        var clientId = '247176875445-j1qmvqljf6k0uo3ou6lkpfo5gd9mb2eu.apps.googleusercontent.com';
+
+        var config = {
+            'client_id': clientId,
+            'scope': 'https://www.googleapis.com/auth/bigquery'
+        };
+
+        function listDatasets() {
+            var request = gapi.client.bigquery.datasets.list({
+                'projectId':projectNumber
+            });
+            request.execute(function(response) {
+                $('#result_box').html(JSON.stringify(response.result.datasets, null));
+            });
+        }
+    </script>
 </head>
+
 <body>
-
-<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-
+<button id="auth_button" onclick="auth();">Authorize</button>
+<div id="client_initiated"></div>
+<button id="dataset_button" style="display:none;" onclick="listDatasets();">Show datasets</button>
+<div id="result_box"></div>
 </body>
 </html>

@@ -1,14 +1,18 @@
-var config = require('./config');
-var google = require('googleapis');
-var urlshortener = google.urlshortener('v1');
+var app = require('express')();
+var http = require('http').Server(app);
 
-var params = { auth: config.API_KEY, shortUrl: 'http://goo.gl/xKbRu3' };
+// app.get('/', function(req, res){
+//     res.send('<h1>Hello world</h1>');
+// });
 
-// get the long url of a shortened url
-urlshortener.url.get(params, function (err, response) {
-    if (err) {
-        console.log('Encountered error', err);
-    } else {
-        console.log('Long url is', response.longUrl);
-    }
+app.get('/callback', function(req, res){
+    console.log(req, res);
+});
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+
+
+http.listen(3001, function(){
+    console.log('listening on *:3001');
 });
